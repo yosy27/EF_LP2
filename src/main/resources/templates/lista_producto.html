@@ -7,14 +7,14 @@
 <body>
     <div class="container mt-5">
         <h2>Lista de Producto</h2>
-        <a th:href="@{/producto/registrar_producto}" class="btn btn-primary">Registrar</a>
+        <a th:href="@{/registrar_producto}" class="btn btn-primary">Registrar</a>
         <table class="table table-bordered table-striped ">
             <thead>
                 <tr>
                     <th>Id de producto</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th>Stock</th>
                     <th>Area</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                     <td th:text="${producto.productoId}"></td>
                     <td th:text="${producto.nombreProducto}"></td>
                     <td th:text="${producto.precioProducto}"></td>
-                    <td th:text="${producto.StockProducto}"></td>
+                    <td th:text="${producto.stockProducto}"></td>
                     <td th:text="${producto.categoriaEntity.nombreCategoria}"></td>
                     <td>
     					<div class="d-flex">

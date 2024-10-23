@@ -42,7 +42,7 @@ public class ProductoController {
 	public String registrarProducto(@ModelAttribute("producto") ProductoEntity productoEntity,
 			Model model) {
 		productoService.crearProducto(productoEntity);
-		return "redirect:/lista_producto/";
+		return "redirect:/lista_producto";
 	}
 	
 	@GetMapping("/detalle_producto/{id}")
