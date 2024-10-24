@@ -53,4 +53,10 @@ public class UsuarioController {
 		model.addAttribute("usuario", new UsuarioEntity());
 		return "login";
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession sesion) {
+		sesion.invalidate();
+		return "redirect:/";
+	}
 }

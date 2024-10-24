@@ -8,4 +8,6 @@ import pe.com.cibertec.ef_cantaro.entity.model.UsuarioEntity;
 public interface UsuarioService {
 	void crearUsuario(UsuarioEntity usuarioEntity, MultipartFile foto);
 	boolean validarUsuario(UsuarioEntity usuarioEntity);
+	UsuarioEntity buscarUsuarioPorCorreo(String correo);
+
 }

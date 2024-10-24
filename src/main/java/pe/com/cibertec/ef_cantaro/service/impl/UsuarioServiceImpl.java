@@ -41,4 +41,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return true;
 	}
 
+	@Override
+	public UsuarioEntity buscarUsuarioPorCorreo(String correo) {
+		return usuarioRepository.findByCorreo(correo);
+	}
+	
+	
+
 }
