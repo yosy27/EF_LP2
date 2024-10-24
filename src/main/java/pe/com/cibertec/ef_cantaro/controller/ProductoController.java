@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import pe.com.cibertec.ef_cantaro.entity.model.CategoriaEntity;
 import pe.com.cibertec.ef_cantaro.entity.model.ProductoEntity;
@@ -24,14 +26,22 @@ public class ProductoController {
 	private final CategoriaService categoriaService;
 	
 	@GetMapping("/lista_producto")
-	public String listarProducto(Model model) {
+	public String listarProducto(Model model, HttpSession session) {
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		List<ProductoEntity> listarProducto = productoService.listarProducto();
 		model.addAttribute("listaprod", listarProducto);
 		return "lista_producto";
 	}
 	
 	@GetMapping("/registrar_producto")
-	public String mostrarRegistrarProducto(Model model) {
+	public String mostrarRegistrarProducto(Model model, HttpSession session) {
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		List<CategoriaEntity>listaCategoria = categoriaService.obtenerTodasCategorias();
 		model.addAttribute("categorias",listaCategoria);
 		model.addAttribute("producto", new ProductoEntity());
@@ -46,7 +56,11 @@ public class ProductoController {
 	}
 	
 	@GetMapping("/detalle_producto/{id}")
-	public String verDetalle(Model model, @PathVariable("id") Integer id) {
+	public String verDetalle(Model model, HttpSession session,  @PathVariable("id") Integer id) {
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 	    ProductoEntity producto = productoService.buscarProductoPorId(id);
 	    model.addAttribute("producto",producto);
 	    return "detalle_producto";
@@ -55,11 +69,16 @@ public class ProductoController {
 	@GetMapping("/delete/{id}")
 	public String deleteProducto(Model model, @PathVariable("id") Integer id) {
 		productoService.eliminarProducto(id);
-		return "redirect:/";
+		return "redirect:/lista_producto";
 	}
 	
 	@GetMapping("/editar_producto/{id}")
-	public String mostrarActualizar(@PathVariable("id")Integer id, Model model) {
+	public String mostrarActualizar(@PathVariable("id")Integer id, Model model,  HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		ProductoEntity producto = productoService.buscarProductoPorId(id);
 		List<CategoriaEntity>listaCategoria = categoriaService.obtenerTodasCategorias();
 		model.addAttribute("categorias",listaCategoria);
@@ -71,7 +90,7 @@ public class ProductoController {
 	public String actualizarProducto(@PathVariable("id")Integer id, 
 			@ModelAttribute("producto") ProductoEntity producto, Model model) {
 		productoService.actualizarProducto(id, producto);
-		return "redirect:/";
+		return "redirect:/lista_producto";
 	}
 
 	

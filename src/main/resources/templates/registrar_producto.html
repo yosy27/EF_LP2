@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Registrar Producto</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
+    <meta charset="UTF-8">
+    <title>Registrar Producto</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-	<div class="container mt-5">
-		<h2>Registrar Producto</h2>
-		<form th:action="@{/registrar_producto}" th:object="${producto}"
-			method="post" class="mt-4">
-
-			<div class="form-group">
-				<label for="nombreProducto">Nombre Producto:</label> <input
-					type="text" th:field="*{nombreProducto}" class="form-control"
-					id="nombreProducto" required>
-			</div>
-			<div class="form-group">
-				<label for="precioProducto">Precio:</label> <input type="number"
-					th:field="*{precioProducto}" class="form-control"
-					id="precioProducto" step="0.01" min="0">
-			</div>
-
-			<div class="form-group">
-				<label for="stockProducto">Stock:</label> <input type="number"
-					th:field="*{stockProducto}" class="form-control" id="stockProducto">
-			</div>
-
-			<div class="form-group">
-				<label for="categoriaEntity">Categoria</label> <select
-					th:field="*{categoriaEntity}" class="form-control"
-					id="categoriaEntity" required>
-					<option th:each="categoria : ${categorias}"
-						th:value="${categoria.categoriaId}"
-						th:text="${categoria.nombreCategoria}"></option>
-				</select>
-			</div>
-			<button type="submit" class="btn btn-primary">Registrar</button>
-		</form>
-	</div>
-	<script src="/js/bootstrap.bundle.min.js"></script>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="w-100" style="max-width: 600px;">
+            <h2 class="text-center">Registrar Producto</h2>
+            <form th:action="@{/registrar_producto}" th:object="${producto}" method="post" class="mt-4">
+                <div class="form-group">
+                    <label for="nombreProducto">Nombre Producto:</label>
+                    <input type="text" th:field="*{nombreProducto}" class="form-control" id="nombreProducto" required>
+                </div>
+                <div class="form-group">
+                    <label for="precioProducto">Precio:</label>
+                    <input type="number" th:field="*{precioProducto}" class="form-control" id="precioProducto" step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="stockProducto">Stock:</label>
+                    <input type="number" th:field="*{stockProducto}" class="form-control" id="stockProducto">
+                </div>
+                <div class="form-group">
+                    <label for="categoriaEntity">Categoria</label> 
+                    <select th:field="*{categoriaEntity}" class="form-control" id="categoriaEntity" required>
+                        <option th:each="categoria : ${categorias}" th:value="${categoria.categoriaId}" th:text="${categoria.nombreCategoria}"></option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary w-50">Registrar</button>
+                    <a th:href="@{/lista_producto}" class="btn btn-secondary w-50 ml-2">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Productos</title>
-	<link rel="stylesheet" href="/css/bootstrap.min.css"></head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
 <body>
     <div class="container mt-5">
         <h2>Lista de Producto</h2>
-        <a th:href="@{/registrar_producto}" class="btn btn-primary">Registrar</a>
-        <table class="table table-bordered table-striped ">
+        <a th:href="@{/registrar_producto}" class="btn btn-primary mb-3">Registrar</a> <!-- Agregué la clase mb-3 -->
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Id de producto</th>
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Stock</th>
-                    <th>Area</th>
+                    <th>Categoria</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,13 +28,11 @@
                     <td th:text="${producto.stockProducto}"></td>
                     <td th:text="${producto.categoriaEntity.nombreCategoria}"></td>
                     <td>
-    					<div class="d-flex">
-							<a th:href="@{/detalle_Producto/{id}(id=${producto.productoId})}" class="btn btn-info">Ver</a>
-       				 		<a th:href="@{/editar_Producto/{id}(id=${producto.productoId})}" class="btn btn-warning">Editar</a>
-    					</div>
-					</td>
-
-
+                        <div class="d-flex">
+                            <a th:href="@{/detalle_producto/{id}(id=${producto.productoId})}" class="btn btn-info">Detalle</a>
+                            <a th:href="@{/editar_producto/{id}(id=${producto.productoId})}" class="btn btn-warning ml-2">Editar</a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

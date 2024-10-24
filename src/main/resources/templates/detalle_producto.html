@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Producto</title>
+    <!-- Estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="w-100" style="max-width: 600px;">
+            <h2 class="text-center">Detalles del Producto</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text" th:text="'Nombre: ' + ${producto.nombreProducto}">No existe</p>
+                    <p class="card-text" th:text="'Precio: '+ ${producto.precioProducto}"></p>    
+                    <p class="card-text" th:text="'Stock '+ ${producto.stockProducto}"></p>
+                    <p class="card-text" th:text="'Categoria: ' + ${producto.categoriaEntity.nombreCategoria}"></p>
+
+                    <div class="d-flex justify-content-between">
+                        <a th:href="@{/lista_producto}" class="btn btn-secondary">Regresar</a>
+                        <a th:href="@{/delete/{id}(id=${producto.productoId})}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
